@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: shop-with-me
+  datasource:
+    url: jdbc:mariadb://localhost:3306/store_api?createDatabaseIfNotExist=true
+    username: root
+    password: 2010
+  jpa:
+    show-sql: true
