@@ -27,7 +27,9 @@
         <url/>
     </scm>
     <properties>
-        <java.version>23</java.version>
+        <java.version>21</java.version>
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     </properties>
     <dependencies>
         <dependency>
@@ -65,6 +67,7 @@
             <artifactId>lombok</artifactId>
             <groupId>org.projectlombok</groupId>
             <scope>annotationProcessor</scope>
+<!--            <scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
@@ -80,7 +83,6 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>10.15.0</version>
                 <configuration>
                     <url>jdbc:mariadb://localhost:3306/store_api?createDatabaseIfNotExist=true</url>
                     <user>root</user>
