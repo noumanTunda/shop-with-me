@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @RequestMapping("/")
     public String hone(){
-        return "hello World.html";
+        return "index.html";
     }
 }
