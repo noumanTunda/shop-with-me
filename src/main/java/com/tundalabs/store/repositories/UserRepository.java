@@ -1,7 +1,7 @@
 package com.tundalabs.store.repositories;
 
 import com.tundalabs.store.entities.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }
