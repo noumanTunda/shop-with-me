@@ -9,6 +9,7 @@ import com.tundalabs.store.mappers.CartMapper;
 import com.tundalabs.store.repositories.CartRepository;
 import com.tundalabs.store.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -68,6 +69,8 @@ public class CartController {
 
         cartRepository.save(cart);
 
-        return ResponseEntity.ok(null);
+        var cartItemDto =cartMapper.toDto(cartItem);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartItemDto);
     }
 }
