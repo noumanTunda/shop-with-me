@@ -1,8 +1,6 @@
 package com.tundalabs.store.dtos;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 

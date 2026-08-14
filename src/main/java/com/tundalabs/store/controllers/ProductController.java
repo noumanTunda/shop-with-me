@@ -1,7 +1,6 @@
 package com.tundalabs.store.controllers;
 
 import com.tundalabs.store.dtos.ProductDto;
-import com.tundalabs.store.dtos.UserDto;
 import com.tundalabs.store.entities.Product;
 import com.tundalabs.store.mappers.ProductMapper;
 import com.tundalabs.store.repositories.ProductRepository;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @AllArgsConstructor
 @RestController
