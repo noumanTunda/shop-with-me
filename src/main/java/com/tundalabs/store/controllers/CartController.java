@@ -1,19 +1,19 @@
 package com.tundalabs.store.controllers;
 
-import com.tundalabs.store.dtos.AddItemToCartRequest;
-import com.tundalabs.store.dtos.CartDto;
-import com.tundalabs.store.dtos.CartItemDto;
+import com.tundalabs.store.dtos.*;
 import com.tundalabs.store.entities.Cart;
 import com.tundalabs.store.entities.CartItem;
 import com.tundalabs.store.mappers.CartMapper;
 import com.tundalabs.store.repositories.CartRepository;
 import com.tundalabs.store.repositories.ProductRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Map;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -83,4 +83,34 @@ public class CartController {
 
         return ResponseEntity.ok(cartMapper.toDto(cart));
     }
+
+    @PutMapping("/{cartId}/items/{productId}")
+    public ResponseEntity<?> updateItems(
+           @PathVariable("cartId") UUID cartId,
+           @PathVariable("productId") Long productId,
+           @Valid @RequestBody UpdateCartItemRequest request
+    ){
+        var cart = cartRepository.getCartWithItems(cartId).orElse(null);
+        if (cart == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    Map.of("error", "Cart Not Found.")
+            );
+        }
+
+        var cartItem = cart.getItems().stream()
+                .filter(item -> item.getProduct().getId().equals(productId))
+                .findFirst()
+                .orElse(null);
+        if( cartItem == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    Map.of("error","Product Not Found in the Cart")
+            );
+        }
+
+        cartItem.setQuantity(request.getQuantity());
+        cartRepository.save(cart);
+
+        return ResponseEntity.ok(cartMapper.toDto(cartItem));
+    }
+
 }
