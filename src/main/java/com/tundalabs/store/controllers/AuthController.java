@@ -1,5 +1,6 @@
 package com.tundalabs.store.controllers;
 
+import com.tundalabs.store.config.JwtConfig;
 import com.tundalabs.store.dtos.JwtResponse;
 import com.tundalabs.store.dtos.LoginRequest;
 import com.tundalabs.store.dtos.UserDto;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final JwtConfig jwtConfig;
     private final UserMapper userMapper;
     private final UserRepository userRepository;
 
@@ -49,8 +51,8 @@ public class AuthController {
         var cookie = new Cookie("refreshToken", refreshToken);
         cookie.setHttpOnly(true);
         cookie.setPath("/auth/refresh");
-        cookie.setMaxAge(604800); //7 Days
-        cookie.setSecure(false);
+        cookie.setMaxAge(jwtConfig.getRefreshTokenExpiration());
+        cookie.setSecure(true);
         response.addCookie(cookie);
 
        return ResponseEntity.ok(new JwtResponse(accessToken));

@@ -1,28 +1,28 @@
 package com.tundalabs.store.services;
 
+import com.tundalabs.store.config.JwtConfig;
 import com.tundalabs.store.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@AllArgsConstructor
 @Service
 public class JwtService {
-    @Value("${spring.jwt.secret}")
-    private String secret;
+   private final JwtConfig jwtConfig;
 
     public String generateAccessToken(User user){
-        final long tokenExpiration = 300; // 5 Mins
-        return generateToken(user, tokenExpiration);
+        return generateToken(user, jwtConfig.getAccessTokenExpiration());
     }
 
-    public String generateRefreshToken(User user){
-        final long tokenExpiration = 604800; // 7 Days
-        return generateToken(user, tokenExpiration);
+    public String generateRefreshToken(User user){// 7 Days
+        return generateToken(user, jwtConfig.getRefreshTokenExpiration());
     }
 
     private String generateToken(User user, long tokenExpiration) {
@@ -32,7 +32,7 @@ public class JwtService {
                 .claim("name", user.getName())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * tokenExpiration))
-                .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
+                .signWith(jwtConfig.getSecretKey())
                 .compact();
     }
 
@@ -50,7 +50,7 @@ public class JwtService {
 
     private Claims getClaims(String token) {
         return Jwts.parser()
-                .verifyWith(Keys.hmacShaKeyFor(secret.getBytes()))
+                .verifyWith(jwtConfig.getSecretKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
