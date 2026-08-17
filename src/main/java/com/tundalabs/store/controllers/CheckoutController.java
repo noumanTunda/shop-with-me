@@ -2,6 +2,7 @@ package com.tundalabs.store.controllers;
 
 import com.tundalabs.store.dtos.CheckoutRequest;
 import com.tundalabs.store.dtos.CheckoutResponse;
+import com.tundalabs.store.dtos.ErrorDto;
 import com.tundalabs.store.entities.Order;
 import com.tundalabs.store.entities.OrderItem;
 import com.tundalabs.store.entities.OrderStatus;
@@ -14,7 +15,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -33,13 +33,13 @@ public class CheckoutController {
         var cart = cartRepository.getCartWithItems(request.getCartId()).orElse(null);
         if (cart == null){
             return ResponseEntity.badRequest().body(
-                    Map.of("error", "Cart Not Found")
+                    new ErrorDto("Cart Not Found")
             );
         }
 
         if(cart.getItems().isEmpty()){
             return ResponseEntity.badRequest().body(
-                    Map.of("error", "Cart is Empty")
+                    new ErrorDto("Cart is Empty")
             );
         }
 
