@@ -2,6 +2,9 @@ package com.tundalabs.store.controllers;
 
 import com.tundalabs.store.dtos.JwtResponse;
 import com.tundalabs.store.dtos.LoginRequest;
+import com.tundalabs.store.dtos.UserDto;
+import com.tundalabs.store.mappers.UserMapper;
+import com.tundalabs.store.repositories.UserRepository;
 import com.tundalabs.store.services.JwtService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -10,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final UserMapper userMapper;
+    private final UserRepository userRepository;
 
 
     @PostMapping("/login")
@@ -36,16 +42,33 @@ public class AuthController {
        return ResponseEntity.ok(new JwtResponse(token));
     }
 
+    @PostMapping("/validate")
+    public Boolean validate(@RequestHeader("Authorization") String authHeader){
+        System.out.println("Validate Called");
+        var token = authHeader.replace("Bearer ", "");
+        return jwtService.validateToken(token);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserDto> me(){
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        var email = (String) authentication.getPrincipal();
+        var user = userRepository.findByEmail(email).orElse(null);
+        if(user == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        var userDto = userMapper.toDto(user);
+
+        return ResponseEntity.ok(userDto);
+
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Void> handleBadCredentialsException(){
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
     }
 
-    @PostMapping("/validate")
-    public Boolean validate(@RequestHeader("Authorization") String authHeader){
-        System.out.println("Validate Called");
-       var token = authHeader.replace("Bearer ", "");
-       return jwtService.validateToken(token);
-    }
+
 }
