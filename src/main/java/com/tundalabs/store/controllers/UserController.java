@@ -4,6 +4,7 @@ import com.tundalabs.store.dtos.ChangePasswordRequest;
 import com.tundalabs.store.dtos.RegisterUserRequest;
 import com.tundalabs.store.dtos.UpdateUSerRequest;
 import com.tundalabs.store.dtos.UserDto;
+import com.tundalabs.store.entities.Role;
 import com.tundalabs.store.mappers.UserMapper;
 import com.tundalabs.store.repositories.UserRepository;
 import jakarta.validation.Valid;
@@ -66,6 +67,7 @@ public class UserController {
 
         var user = userMapper.toEntity(request);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.USER);
         userRepository.save(user);
 
         var userDto = userMapper.toDto(user);
