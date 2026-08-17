@@ -41,4 +41,10 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
     }
+
+    @PostMapping("/validate")
+    public Boolean validate(@RequestHeader("Authorization") String authHeader){
+       var token = authHeader.replace("Bearer ", "");
+       return jwtService.validateToken(token);
+    }
 }
