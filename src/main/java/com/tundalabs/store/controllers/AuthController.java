@@ -6,6 +6,8 @@ import com.tundalabs.store.dtos.UserDto;
 import com.tundalabs.store.mappers.UserMapper;
 import com.tundalabs.store.repositories.UserRepository;
 import com.tundalabs.store.services.JwtService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(
-           @Valid @RequestBody LoginRequest request
+           @Valid @RequestBody LoginRequest request,
+           HttpServletResponse response
+
     ){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -37,9 +41,19 @@ public class AuthController {
                 )
         );
 
-        var token = jwtService.generateToken(request.getEmail());
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
 
-       return ResponseEntity.ok(new JwtResponse(token));
+        var accessToken = jwtService.generateAccessToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
+
+        var cookie = new Cookie("refreshToken", refreshToken);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/auth/refresh");
+        cookie.setMaxAge(604800); //7 Days
+        cookie.setSecure(false);
+        response.addCookie(cookie);
+
+       return ResponseEntity.ok(new JwtResponse(accessToken));
     }
 
     @PostMapping("/validate")
@@ -52,8 +66,8 @@ public class AuthController {
     @GetMapping("/me")
     public ResponseEntity<UserDto> me(){
         var authentication = SecurityContextHolder.getContext().getAuthentication();
-        var email = (String) authentication.getPrincipal();
-        var user = userRepository.findByEmail(email).orElse(null);
+        var userId = (Long) authentication.getPrincipal();
+        var user = userRepository.findById(userId).orElse(null);
         if(user == null){
             return ResponseEntity.notFound().build();
         }
