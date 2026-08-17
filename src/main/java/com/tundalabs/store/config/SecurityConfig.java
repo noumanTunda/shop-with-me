@@ -1,5 +1,6 @@
 package com.tundalabs.store.config;
 
+import com.tundalabs.store.entities.Role;
 import com.tundalabs.store.filters.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -60,6 +61,7 @@ public class SecurityConfig {
                 // Authorize the HTTP Requests
                 .authorizeHttpRequests(c -> c
                         .requestMatchers("/carts/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/refresh").permitAll()
@@ -67,9 +69,12 @@ public class SecurityConfig {
 
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(c ->
-                        c.authenticationEntryPoint(
-                                new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)));
+                .exceptionHandling(c ->{
+                            c.authenticationEntryPoint(
+                                    new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                            c.accessDeniedHandler((request, response, accessDeniedException) ->
+                                    response.setStatus(HttpStatus.FORBIDDEN.value()));
+                        });
         return http.build();
     }
 }
