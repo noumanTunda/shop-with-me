@@ -1,10 +1,11 @@
 package com.tundalabs.store.controllers;
 
-import com.stripe.exception.StripeException;
 import com.tundalabs.store.dtos.CheckoutRequest;
+import com.tundalabs.store.dtos.CheckoutResponse;
 import com.tundalabs.store.dtos.ErrorDto;
 import com.tundalabs.store.exceptions.CartEmptyException;
 import com.tundalabs.store.exceptions.CartNotFoundException;
+import com.tundalabs.store.exceptions.PaymentException;
 import com.tundalabs.store.services.CheckoutService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -21,16 +22,16 @@ public class CheckoutController {
 
 
     @PostMapping
-    public ResponseEntity<?> checkout(
+    public CheckoutResponse checkout(
            @Valid @RequestBody CheckoutRequest request
     ){
-        try{
-            return ResponseEntity.ok(checkoutService.checkout(request));
-        }
-        catch (StripeException ex){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ErrorDto("Checkout Service is Experiencing Issues"));
-        }
+            return checkoutService.checkout(request);
+    }
+
+    @ExceptionHandler(PaymentException.class)
+    public ResponseEntity handlePaymentException(){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorDto("Error in Creating a Checkout Session"));
     }
 
     @ExceptionHandler({CartNotFoundException.class, CartEmptyException.class})
