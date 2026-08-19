@@ -3,13 +3,9 @@ package com.tundalabs.store.controllers;
 import com.tundalabs.store.dtos.CheckoutRequest;
 import com.tundalabs.store.dtos.CheckoutResponse;
 import com.tundalabs.store.dtos.ErrorDto;
-import com.tundalabs.store.entities.Order;
-import com.tundalabs.store.entities.OrderItem;
-import com.tundalabs.store.entities.OrderStatus;
-import com.tundalabs.store.repositories.AddressRepository1;
-import com.tundalabs.store.repositories.CartRepository;
-import com.tundalabs.store.services.AuthService;
-import com.tundalabs.store.services.CartService;
+import com.tundalabs.store.exceptions.CartEmptyException;
+import com.tundalabs.store.exceptions.CartNotFoundException;
+import com.tundalabs.store.services.CheckoutService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,35 +16,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/checkout")
 public class CheckoutController {
-    private final CartRepository cartRepository;
-    private final AuthService authService;
-    private final AddressRepository1 orderRepository;
-    private final CartService cartService;
+    private final CheckoutService checkoutService;
 
 
     @PostMapping
-    public ResponseEntity<?> checkout(
+    public CheckoutResponse checkout(
            @Valid @RequestBody CheckoutRequest request
     ){
-        var cart = cartRepository.getCartWithItems(request.getCartId()).orElse(null);
-        if (cart == null){
-            return ResponseEntity.badRequest().body(
-                    new ErrorDto("Cart Not Found")
-            );
-        }
+       return checkoutService.checkout(request);
+    }
 
-        if(cart.getItems().isEmpty()){
-            return ResponseEntity.badRequest().body(
-                    new ErrorDto("Cart is Empty")
-            );
-        }
-
-        var order = Order.fromCart(cart,authService.getCurrentUser());
-
-        orderRepository.save(order);
-
-        cartService.clearCart(cart.getId());
-
-        return ResponseEntity.ok(new CheckoutResponse(order.getId()));
+    @ExceptionHandler({CartNotFoundException.class, CartEmptyException.class})
+    public ResponseEntity<ErrorDto> handleException(Exception ex){
+        return ResponseEntity.badRequest().body(new ErrorDto(ex.getMessage()));
     }
 }
