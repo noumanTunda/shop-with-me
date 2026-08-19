@@ -1,9 +1,6 @@
 package com.tundalabs.store.controllers;
 
 import com.tundalabs.store.dtos.OrderDto;
-import com.tundalabs.store.mappers.OrderMapper;
-import com.tundalabs.store.repositories.OrderRepository;
-import com.tundalabs.store.services.AuthService;
 import com.tundalabs.store.services.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
