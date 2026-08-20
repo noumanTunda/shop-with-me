@@ -6,19 +6,24 @@ import com.tundalabs.store.dtos.ErrorDto;
 import com.tundalabs.store.exceptions.CartEmptyException;
 import com.tundalabs.store.exceptions.CartNotFoundException;
 import com.tundalabs.store.exceptions.PaymentException;
+import com.tundalabs.store.repositories.OrderRepository;
 import com.tundalabs.store.services.CheckoutService;
+import com.tundalabs.store.services.WebhookRequest;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 
-@AllArgsConstructor
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/checkout")
 public class CheckoutController {
     private final CheckoutService checkoutService;
+    private final OrderRepository orderRepository;
 
 
     @PostMapping
@@ -28,8 +33,16 @@ public class CheckoutController {
             return checkoutService.checkout(request);
     }
 
+    @PostMapping("/webhook")
+    public void handleWebhook(
+           @RequestBody String payload,
+           @RequestHeader Map<String, String> headers
+    ){
+        checkoutService.handleWebhookEvent(new WebhookRequest(headers, payload));
+    }
+
     @ExceptionHandler(PaymentException.class)
-    public ResponseEntity handlePaymentException(){
+    public ResponseEntity<?> handlePaymentException(){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorDto("Error in Creating a Checkout Session"));
     }

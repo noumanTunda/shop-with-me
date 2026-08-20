@@ -1,21 +1,35 @@
 package com.tundalabs.store.services;
 
+import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
+import com.stripe.model.Event;
+import com.stripe.model.PaymentIntent;
 import com.stripe.model.checkout.Session;
+import com.stripe.net.Webhook;
 import com.stripe.param.checkout.SessionCreateParams;
 import com.tundalabs.store.entities.Order;
 import com.tundalabs.store.entities.OrderItem;
+import com.tundalabs.store.entities.PaymentStatus;
 import com.tundalabs.store.exceptions.PaymentException;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class StripePaymentGateway implements PaymentGateway{
+//    private final PaymentIntent paymentIntent;
+
     @Value("${websiteUrl}")
     private String websiteUrl;
+
+    @Value("${stripe.webhookSecretKey}")
+    private String webhookSecretKey;
 
     @Override
     public CheckoutSession createCheckoutSession(Order order) {
@@ -24,6 +38,7 @@ public class StripePaymentGateway implements PaymentGateway{
                     .setMode(SessionCreateParams.Mode.PAYMENT)
                     .setSuccessUrl(websiteUrl+ "/checkout-sucess?orderId=" + order.getId())
                     .setCancelUrl(websiteUrl+ "/checkout-cancel")
+                    .putMetadata("order_id", order.getId().toString())
                     .putExtraParam("managed_payments", Map.of("enabled", false));//to disable managed payments
 
             order.getItems().forEach(item-> {
@@ -38,6 +53,45 @@ public class StripePaymentGateway implements PaymentGateway{
             System.out.println(ex.getMessage());
             throw new PaymentException();
         }
+    }
+
+    @Override
+    public Optional<PaymentResult> parseWebhookRequest(WebhookRequest request) {
+        try {
+            var payload = request.getPayload();
+            var signature = request.getHeaders().get("stripe-signature");
+            var event = Webhook.constructEvent(payload, signature, webhookSecretKey);
+            System.out.println(event.getType());
+
+            switch (event.getType()){
+                case "payment_intent.succeeded" ->{
+                    System.out.println("Payment Successful Case Called");// shida ipo kweny line ya hapo chini
+                    return   Optional.of(new PaymentResult(extractOrderId(event), PaymentStatus.PAID));
+                }
+
+                case "payment_intent.payment_failed" ->{
+                    System.out.println("Payment Failed Case Called");
+                    return      Optional.of(new PaymentResult(extractOrderId(event), PaymentStatus.FAILED));
+                }
+
+                default ->{
+                    System.out.println("Default Case Called");
+                    return       Optional.empty();
+                }
+            }
+            //;
+
+        } catch (SignatureVerificationException e) {
+            throw new PaymentException("Invalid Signature");
+        }
+    }
+
+    private Long extractOrderId(Event event){
+        var stripeObject = event.getDataObjectDeserializer().getObject().orElseThrow(
+                () -> new PaymentException("Could Not Deserialize Stripe Event. Check SDK and API version"));
+
+        var paymentIntent = (PaymentIntent)stripeObject;
+        return Long.valueOf(paymentIntent.getMetadata().get("order_id"));
     }
 
     private SessionCreateParams.LineItem createLineItem(OrderItem item) {

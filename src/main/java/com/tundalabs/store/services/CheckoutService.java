@@ -3,6 +3,7 @@ package com.tundalabs.store.services;
 import com.tundalabs.store.dtos.CheckoutRequest;
 import com.tundalabs.store.dtos.CheckoutResponse;
 import com.tundalabs.store.entities.Order;
+import com.tundalabs.store.entities.PaymentStatus;
 import com.tundalabs.store.exceptions.CartEmptyException;
 import com.tundalabs.store.exceptions.CartNotFoundException;
 import com.tundalabs.store.exceptions.PaymentException;
@@ -40,7 +41,6 @@ public class CheckoutService {
 
         try{
             var session = paymentGateway.createCheckoutSession(order);
-
             cartService.clearCart(cart.getId());
 
             return new CheckoutResponse(order.getId(), session.getCheckoutUrl());
@@ -49,5 +49,18 @@ public class CheckoutService {
             orderRepository.delete(order);
             throw ex;
         }
+    }
+
+    public void handleWebhookEvent(WebhookRequest request){
+        paymentGateway
+                .parseWebhookRequest(request)
+                .ifPresent(paymentResult -> {
+                    var order = orderRepository.findById(paymentResult.getOrderId()).orElseThrow();//cjabadili
+                    order.setStatus(paymentResult.getPaymentStatus());
+                    System.out.println(order.getStatus());//debug
+//                    order.setStatus(PaymentStatus.PAID);
+                    orderRepository.save(order);
+                    System.out.println(order.getStatus());//debug
+                });
     }
 }
