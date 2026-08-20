@@ -1,4 +1,4 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.payments;
 
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
@@ -10,7 +10,6 @@ import com.stripe.param.checkout.SessionCreateParams;
 import com.tundalabs.store.entities.Order;
 import com.tundalabs.store.entities.OrderItem;
 import com.tundalabs.store.entities.PaymentStatus;
-import com.tundalabs.store.exceptions.PaymentException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

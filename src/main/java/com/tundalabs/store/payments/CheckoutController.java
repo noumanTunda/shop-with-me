@@ -1,13 +1,8 @@
-package com.tundalabs.store.controllers;
+package com.tundalabs.store.payments;
 
-import com.tundalabs.store.dtos.CheckoutRequest;
-import com.tundalabs.store.dtos.CheckoutResponse;
 import com.tundalabs.store.dtos.ErrorDto;
 import com.tundalabs.store.exceptions.CartEmptyException;
 import com.tundalabs.store.exceptions.CartNotFoundException;
-import com.tundalabs.store.exceptions.PaymentException;
-import com.tundalabs.store.services.CheckoutService;
-import com.tundalabs.store.services.WebhookRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

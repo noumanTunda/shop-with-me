@@ -1,4 +1,4 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.payments;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

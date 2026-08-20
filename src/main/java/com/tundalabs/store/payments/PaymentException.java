@@ -1,4 +1,4 @@
-package com.tundalabs.store.exceptions;
+package com.tundalabs.store.payments;
 
 import lombok.NoArgsConstructor;
 

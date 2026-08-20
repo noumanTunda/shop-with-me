@@ -1,4 +1,4 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.payments;
 
 import com.tundalabs.store.entities.Order;
 

@@ -1,4 +1,4 @@
-package com.tundalabs.store.dtos;
+package com.tundalabs.store.payments;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

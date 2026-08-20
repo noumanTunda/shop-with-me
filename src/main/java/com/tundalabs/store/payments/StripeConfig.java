@@ -1,4 +1,4 @@
-package com.tundalabs.store.config;
+package com.tundalabs.store.payments;
 
 import com.stripe.Stripe;
 import jakarta.annotation.PostConstruct;
