@@ -11,7 +11,6 @@ import com.tundalabs.store.entities.Order;
 import com.tundalabs.store.entities.OrderItem;
 import com.tundalabs.store.entities.PaymentStatus;
 import com.tundalabs.store.exceptions.PaymentException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -50,7 +49,6 @@ public class StripePaymentGateway implements PaymentGateway{
             return new CheckoutSession(session.getUrl());
         }
         catch (StripeException ex){
-            System.out.println(ex.getMessage());
             throw new PaymentException();
         }
     }
@@ -61,25 +59,17 @@ public class StripePaymentGateway implements PaymentGateway{
             var payload = request.getPayload();
             var signature = request.getHeaders().get("stripe-signature");
             var event = Webhook.constructEvent(payload, signature, webhookSecretKey);
-            System.out.println(event.getType());
 
-            switch (event.getType()){
-                case "payment_intent.succeeded" ->{
-                    System.out.println("Payment Successful Case Called");// shida ipo kweny line ya hapo chini
-                    return   Optional.of(new PaymentResult(extractOrderId(event), PaymentStatus.PAID));
-                }
+            return switch (event.getType()){
+                case "payment_intent.succeeded" ->
+                        Optional.of(new PaymentResult(extractOrderId(event), PaymentStatus.PAID));
 
-                case "payment_intent.payment_failed" ->{
-                    System.out.println("Payment Failed Case Called");
-                    return      Optional.of(new PaymentResult(extractOrderId(event), PaymentStatus.FAILED));
-                }
+                case "payment_intent.payment_failed" ->
+                        Optional.of(new PaymentResult(extractOrderId(event), PaymentStatus.FAILED));
 
-                default ->{
-                    System.out.println("Default Case Called");
-                    return       Optional.empty();
-                }
-            }
-            //;
+                default ->
+                        Optional.empty();
+            };
 
         } catch (SignatureVerificationException e) {
             throw new PaymentException("Invalid Signature");

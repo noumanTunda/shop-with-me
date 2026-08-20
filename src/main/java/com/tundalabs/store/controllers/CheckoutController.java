@@ -6,7 +6,6 @@ import com.tundalabs.store.dtos.ErrorDto;
 import com.tundalabs.store.exceptions.CartEmptyException;
 import com.tundalabs.store.exceptions.CartNotFoundException;
 import com.tundalabs.store.exceptions.PaymentException;
-import com.tundalabs.store.repositories.OrderRepository;
 import com.tundalabs.store.services.CheckoutService;
 import com.tundalabs.store.services.WebhookRequest;
 import jakarta.validation.Valid;
@@ -23,7 +22,6 @@ import java.util.Map;
 @RequestMapping("/checkout")
 public class CheckoutController {
     private final CheckoutService checkoutService;
-    private final OrderRepository orderRepository;
 
 
     @PostMapping

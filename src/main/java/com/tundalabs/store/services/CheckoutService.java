@@ -3,7 +3,6 @@ package com.tundalabs.store.services;
 import com.tundalabs.store.dtos.CheckoutRequest;
 import com.tundalabs.store.dtos.CheckoutResponse;
 import com.tundalabs.store.entities.Order;
-import com.tundalabs.store.entities.PaymentStatus;
 import com.tundalabs.store.exceptions.CartEmptyException;
 import com.tundalabs.store.exceptions.CartNotFoundException;
 import com.tundalabs.store.exceptions.PaymentException;
@@ -55,12 +54,9 @@ public class CheckoutService {
         paymentGateway
                 .parseWebhookRequest(request)
                 .ifPresent(paymentResult -> {
-                    var order = orderRepository.findById(paymentResult.getOrderId()).orElseThrow();//cjabadili
+                    var order = orderRepository.findById(paymentResult.getOrderId()).orElseThrow();
                     order.setStatus(paymentResult.getPaymentStatus());
-                    System.out.println(order.getStatus());//debug
-//                    order.setStatus(PaymentStatus.PAID);
                     orderRepository.save(order);
-                    System.out.println(order.getStatus());//debug
                 });
     }
 }
