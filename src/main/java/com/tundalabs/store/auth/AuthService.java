@@ -1,4 +1,4 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.auth;
 
 import com.tundalabs.store.entities.User;
 import com.tundalabs.store.repositories.UserRepository;

@@ -1,6 +1,6 @@
 package com.tundalabs.store.controllers;
 
-import com.tundalabs.store.dtos.ChangePasswordRequest;
+import com.tundalabs.store.auth.ChangePasswordRequest;
 import com.tundalabs.store.dtos.RegisterUserRequest;
 import com.tundalabs.store.dtos.UpdateUSerRequest;
 import com.tundalabs.store.dtos.UserDto;

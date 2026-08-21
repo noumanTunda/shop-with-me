@@ -1,8 +1,7 @@
-package com.tundalabs.store.controllers;
+package com.tundalabs.store.auth;
 
 import com.tundalabs.store.config.JwtConfig;
 import com.tundalabs.store.dtos.JwtResponse;
-import com.tundalabs.store.dtos.LoginRequest;
 import com.tundalabs.store.dtos.UserDto;
 import com.tundalabs.store.mappers.UserMapper;
 import com.tundalabs.store.repositories.UserRepository;

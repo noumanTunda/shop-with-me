@@ -5,7 +5,7 @@ import com.tundalabs.store.exceptions.CartEmptyException;
 import com.tundalabs.store.exceptions.CartNotFoundException;
 import com.tundalabs.store.repositories.CartRepository;
 import com.tundalabs.store.repositories.OrderRepository;
-import com.tundalabs.store.services.AuthService;
+import com.tundalabs.store.auth.AuthService;
 import com.tundalabs.store.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

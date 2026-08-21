@@ -1,5 +1,6 @@
 package com.tundalabs.store.services;
 
+import com.tundalabs.store.auth.AuthService;
 import com.tundalabs.store.dtos.OrderDto;
 import com.tundalabs.store.exceptions.OrderNotFoundException;
 import com.tundalabs.store.mappers.OrderMapper;

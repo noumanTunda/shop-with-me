@@ -1,4 +1,4 @@
-package com.tundalabs.store.filters;
+package com.tundalabs.store.auth;
 
 import com.tundalabs.store.services.JwtService;
 import jakarta.servlet.FilterChain;
