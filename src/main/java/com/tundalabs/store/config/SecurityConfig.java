@@ -1,6 +1,6 @@
 package com.tundalabs.store.config;
 
-import com.tundalabs.store.entities.Role;
+import com.tundalabs.store.users.Role;
 import com.tundalabs.store.auth.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
 package com.tundalabs.store.services;
 
-import com.tundalabs.store.entities.Role;
+import com.tundalabs.store.users.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 

@@ -1,6 +1,5 @@
 package com.tundalabs.store.products;
 
-import com.tundalabs.store.entities.Category;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,9 +1,6 @@
-package com.tundalabs.store.mappers;
+package com.tundalabs.store.users;
 
 import com.tundalabs.store.auth.RegisterUserRequest;
-import com.tundalabs.store.dtos.UpdateUSerRequest;
-import com.tundalabs.store.dtos.UserDto;
-import com.tundalabs.store.entities.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 

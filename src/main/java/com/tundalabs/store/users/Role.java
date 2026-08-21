@@ -1,4 +1,4 @@
-package com.tundalabs.store.entities;
+package com.tundalabs.store.users;
 
 public enum Role {
     USER,

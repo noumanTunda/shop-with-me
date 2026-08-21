@@ -1,6 +1,5 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.users;
 
-import com.tundalabs.store.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

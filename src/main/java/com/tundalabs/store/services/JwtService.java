@@ -1,7 +1,7 @@
 package com.tundalabs.store.services;
 
 import com.tundalabs.store.config.JwtConfig;
-import com.tundalabs.store.entities.User;
+import com.tundalabs.store.users.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.AllArgsConstructor;

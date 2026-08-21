@@ -1,6 +1,5 @@
-package com.tundalabs.store.repositories;
+package com.tundalabs.store.users;
 
-import com.tundalabs.store.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

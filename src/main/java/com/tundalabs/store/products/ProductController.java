@@ -1,6 +1,5 @@
 package com.tundalabs.store.products;
 
-import com.tundalabs.store.repositories.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

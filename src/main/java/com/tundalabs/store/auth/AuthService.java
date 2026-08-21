@@ -1,7 +1,7 @@
 package com.tundalabs.store.auth;
 
-import com.tundalabs.store.entities.User;
-import com.tundalabs.store.repositories.UserRepository;
+import com.tundalabs.store.users.User;
+import com.tundalabs.store.users.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

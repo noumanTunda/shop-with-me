@@ -1,12 +1,7 @@
-package com.tundalabs.store.controllers;
+package com.tundalabs.store.users;
 
 import com.tundalabs.store.auth.ChangePasswordRequest;
 import com.tundalabs.store.auth.RegisterUserRequest;
-import com.tundalabs.store.dtos.UpdateUSerRequest;
-import com.tundalabs.store.dtos.UserDto;
-import com.tundalabs.store.entities.Role;
-import com.tundalabs.store.mappers.UserMapper;
-import com.tundalabs.store.repositories.UserRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;

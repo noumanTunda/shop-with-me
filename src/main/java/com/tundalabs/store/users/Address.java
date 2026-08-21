@@ -1,4 +1,4 @@
-package com.tundalabs.store.entities;
+package com.tundalabs.store.users;
 
 import jakarta.persistence.*;
 import lombok.*;
