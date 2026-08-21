@@ -1,4 +1,4 @@
-package com.tundalabs.store.common;
+package com.tundalabs.store.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.tundalabs.store.orders;
 
 import com.tundalabs.store.carts.Cart;
-import com.tundalabs.store.common.PaymentStatus;
+import com.tundalabs.store.payments.PaymentStatus;
 import com.tundalabs.store.users.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

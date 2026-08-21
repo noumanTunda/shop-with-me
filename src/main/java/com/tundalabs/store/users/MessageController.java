@@ -1,4 +1,4 @@
-package com.tundalabs.store.common;
+package com.tundalabs.store.users;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,11 +1,8 @@
 package com.tundalabs.store.auth;
 
-import com.tundalabs.store.common.JwtConfig;
-import com.tundalabs.store.common.JwtResponse;
 import com.tundalabs.store.users.UserDto;
 import com.tundalabs.store.users.UserMapper;
 import com.tundalabs.store.users.UserRepository;
-import com.tundalabs.store.common.JwtService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

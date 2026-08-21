@@ -9,7 +9,6 @@ import com.stripe.net.Webhook;
 import com.stripe.param.checkout.SessionCreateParams;
 import com.tundalabs.store.orders.Order;
 import com.tundalabs.store.orders.OrderItem;
-import com.tundalabs.store.common.PaymentStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

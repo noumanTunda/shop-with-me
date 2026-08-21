@@ -1,4 +1,4 @@
-package com.tundalabs.store.common;
+package com.tundalabs.store.auth;
 
 import io.jsonwebtoken.security.Keys;
 import lombok.Data;
