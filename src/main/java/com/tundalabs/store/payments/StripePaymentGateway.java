@@ -35,7 +35,10 @@ public class StripePaymentGateway implements PaymentGateway{
                     .setMode(SessionCreateParams.Mode.PAYMENT)
                     .setSuccessUrl(websiteUrl+ "/checkout-sucess?orderId=" + order.getId())
                     .setCancelUrl(websiteUrl+ "/checkout-cancel")
-                    .putMetadata("order_id", order.getId().toString())
+//                    .putMetadata("order_id", order.getId().toString())
+                    .setPaymentIntentData(SessionCreateParams.PaymentIntentData.builder()
+                            .putMetadata("order_id", order.getId().toString())
+                            .build())
                     .putExtraParam("managed_payments", Map.of("enabled", false));//to disable managed payments
 
             order.getItems().forEach(item-> {
