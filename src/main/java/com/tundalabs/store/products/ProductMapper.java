@@ -1,7 +1,5 @@
-package com.tundalabs.store.mappers;
+package com.tundalabs.store.products;
 
-import com.tundalabs.store.dtos.ProductDto;
-import com.tundalabs.store.entities.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

@@ -1,7 +1,7 @@
 package com.tundalabs.store.carts;
 
 import com.tundalabs.store.exceptions.ProductNotFoundException;
-import com.tundalabs.store.repositories.ProductRepository;
+import com.tundalabs.store.products.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

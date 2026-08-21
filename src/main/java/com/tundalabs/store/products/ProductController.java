@@ -1,10 +1,6 @@
-package com.tundalabs.store.controllers;
+package com.tundalabs.store.products;
 
-import com.tundalabs.store.dtos.ProductDto;
-import com.tundalabs.store.entities.Product;
-import com.tundalabs.store.mappers.ProductMapper;
 import com.tundalabs.store.repositories.CategoryRepository;
-import com.tundalabs.store.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
