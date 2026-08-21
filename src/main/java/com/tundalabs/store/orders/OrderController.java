@@ -1,9 +1,6 @@
-package com.tundalabs.store.controllers;
+package com.tundalabs.store.orders;
 
 import com.tundalabs.store.dtos.ErrorDto;
-import com.tundalabs.store.dtos.OrderDto;
-import com.tundalabs.store.exceptions.OrderNotFoundException;
-import com.tundalabs.store.services.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

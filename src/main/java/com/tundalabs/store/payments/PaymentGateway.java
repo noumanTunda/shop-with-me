@@ -1,6 +1,6 @@
 package com.tundalabs.store.payments;
 
-import com.tundalabs.store.entities.Order;
+import com.tundalabs.store.orders.Order;
 
 import java.util.Optional;
 

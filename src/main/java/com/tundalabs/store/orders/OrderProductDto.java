@@ -1,4 +1,4 @@
-package com.tundalabs.store.dtos;
+package com.tundalabs.store.orders;
 
 import lombok.Data;
 

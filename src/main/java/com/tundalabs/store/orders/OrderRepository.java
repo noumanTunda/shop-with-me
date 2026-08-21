@@ -1,6 +1,5 @@
-package com.tundalabs.store.repositories;
+package com.tundalabs.store.orders;
 
-import com.tundalabs.store.entities.Order;
 import com.tundalabs.store.entities.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

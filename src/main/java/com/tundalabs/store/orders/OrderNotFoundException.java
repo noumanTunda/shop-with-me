@@ -1,4 +1,4 @@
-package com.tundalabs.store.exceptions;
+package com.tundalabs.store.orders;
 
 public class OrderNotFoundException extends RuntimeException {
     public OrderNotFoundException() {

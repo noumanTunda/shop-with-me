@@ -1,6 +1,8 @@
-package com.tundalabs.store.entities;
+package com.tundalabs.store.orders;
 
 import com.tundalabs.store.carts.Cart;
+import com.tundalabs.store.entities.PaymentStatus;
+import com.tundalabs.store.entities.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

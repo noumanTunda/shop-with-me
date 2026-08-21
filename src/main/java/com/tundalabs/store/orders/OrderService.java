@@ -1,10 +1,6 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.orders;
 
 import com.tundalabs.store.auth.AuthService;
-import com.tundalabs.store.dtos.OrderDto;
-import com.tundalabs.store.exceptions.OrderNotFoundException;
-import com.tundalabs.store.mappers.OrderMapper;
-import com.tundalabs.store.repositories.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
