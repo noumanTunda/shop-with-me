@@ -1,6 +1,5 @@
-package com.tundalabs.store.controllers;
+package com.tundalabs.store.common;
 
-import com.tundalabs.store.entities.Message;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

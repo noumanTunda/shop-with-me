@@ -1,4 +1,4 @@
-package com.tundalabs.store.config;
+package com.tundalabs.store.common;
 
 import com.tundalabs.store.users.Role;
 import com.tundalabs.store.auth.JwtAuthenticationFilter;

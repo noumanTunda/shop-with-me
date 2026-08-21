@@ -1,6 +1,6 @@
 package com.tundalabs.store.carts;
 
-import com.tundalabs.store.dtos.*;
+import com.tundalabs.store.common.ErrorDto;
 import com.tundalabs.store.products.ProductNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

@@ -1,4 +1,4 @@
-package com.tundalabs.store.entities;
+package com.tundalabs.store.common;
 
 public enum PaymentStatus {
     PENDING,

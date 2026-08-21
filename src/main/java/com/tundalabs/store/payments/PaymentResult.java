@@ -1,6 +1,6 @@
 package com.tundalabs.store.payments;
 
-import com.tundalabs.store.entities.PaymentStatus;
+import com.tundalabs.store.common.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

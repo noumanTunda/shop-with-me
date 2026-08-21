@@ -1,6 +1,5 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.common;
 
-import com.tundalabs.store.config.JwtConfig;
 import com.tundalabs.store.users.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

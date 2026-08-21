@@ -1,6 +1,6 @@
 package com.tundalabs.store.payments;
 
-import com.tundalabs.store.dtos.ErrorDto;
+import com.tundalabs.store.common.ErrorDto;
 import com.tundalabs.store.carts.CartEmptyException;
 import com.tundalabs.store.carts.CartNotFoundException;
 import jakarta.validation.Valid;

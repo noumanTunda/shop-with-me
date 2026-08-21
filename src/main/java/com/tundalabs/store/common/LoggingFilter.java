@@ -1,4 +1,4 @@
-package com.tundalabs.store.filters;
+package com.tundalabs.store.common;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.common;
 
 import com.tundalabs.store.users.Role;
 import io.jsonwebtoken.Claims;

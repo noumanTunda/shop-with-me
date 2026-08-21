@@ -1,6 +1,6 @@
 package com.tundalabs.store.auth;
 
-import com.tundalabs.store.services.JwtService;
+import com.tundalabs.store.common.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
