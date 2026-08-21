@@ -1,6 +1,5 @@
-package com.tundalabs.store.entities;
+package com.tundalabs.store.products;
 
-import com.tundalabs.store.products.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

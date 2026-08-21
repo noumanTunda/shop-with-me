@@ -1,6 +1,5 @@
-package com.tundalabs.store.repositories;
+package com.tundalabs.store.products;
 
-import com.tundalabs.store.entities.Category;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CategoryRepository extends CrudRepository<Category, Byte> {
