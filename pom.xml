@@ -173,6 +173,7 @@
                             <files>
                                 <file>.env</file>
                             </files>
+                            <quiet>true</quiet>
                         </configuration>
                     </execution>
                 </executions>
@@ -181,9 +182,9 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <configuration>
-                    <url>${SPRING_DATASOURCE_URL}</url>
-                    <user>${MYSQLUSER}</user>
-                    <password>${MYSQLPASSWORD}</password>
+                    <url>${env.SPRING_DATASOURCE_URL}</url>
+                    <user>${env.MYSQLUSER}</user>
+                    <password>${env.MYSQLPASSWORD}</password>
                     <cleanDisabled>false</cleanDisabled>
                 </configuration>
             </plugin>
