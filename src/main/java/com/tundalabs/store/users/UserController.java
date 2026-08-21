@@ -1,7 +1,6 @@
 package com.tundalabs.store.users;
 
 import com.tundalabs.store.auth.ChangePasswordRequest;
-import com.tundalabs.store.auth.RegisterUserRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;

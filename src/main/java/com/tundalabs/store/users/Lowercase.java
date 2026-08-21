@@ -1,4 +1,4 @@
-package com.tundalabs.store.validation;
+package com.tundalabs.store.users;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

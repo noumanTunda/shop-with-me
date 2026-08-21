@@ -1,6 +1,5 @@
 package com.tundalabs.store.users;
 
-import com.tundalabs.store.auth.RegisterUserRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
