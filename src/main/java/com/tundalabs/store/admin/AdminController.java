@@ -1,4 +1,4 @@
-package com.tundalabs.store.controllers;
+package com.tundalabs.store.admin;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
