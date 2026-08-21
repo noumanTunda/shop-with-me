@@ -1,5 +1,6 @@
 package com.tundalabs.store.entities;
 
+import com.tundalabs.store.carts.Cart;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

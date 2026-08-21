@@ -1,6 +1,6 @@
 package com.tundalabs.store.mappers;
 
-import com.tundalabs.store.dtos.RegisterUserRequest;
+import com.tundalabs.store.auth.RegisterUserRequest;
 import com.tundalabs.store.dtos.UpdateUSerRequest;
 import com.tundalabs.store.dtos.UserDto;
 import com.tundalabs.store.entities.User;

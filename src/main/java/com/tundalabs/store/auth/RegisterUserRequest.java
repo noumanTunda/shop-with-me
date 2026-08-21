@@ -1,4 +1,4 @@
-package com.tundalabs.store.dtos;
+package com.tundalabs.store.auth;
 
 import com.tundalabs.store.validation.Lowercase;
 import jakarta.validation.constraints.Email;

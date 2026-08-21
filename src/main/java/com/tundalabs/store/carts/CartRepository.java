@@ -1,6 +1,5 @@
-package com.tundalabs.store.repositories;
+package com.tundalabs.store.carts;
 
-import com.tundalabs.store.entities.Cart;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

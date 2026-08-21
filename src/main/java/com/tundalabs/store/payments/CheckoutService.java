@@ -1,12 +1,12 @@
 package com.tundalabs.store.payments;
 
 import com.tundalabs.store.entities.Order;
-import com.tundalabs.store.exceptions.CartEmptyException;
-import com.tundalabs.store.exceptions.CartNotFoundException;
-import com.tundalabs.store.repositories.CartRepository;
+import com.tundalabs.store.carts.CartEmptyException;
+import com.tundalabs.store.carts.CartNotFoundException;
+import com.tundalabs.store.carts.CartRepository;
 import com.tundalabs.store.repositories.OrderRepository;
 import com.tundalabs.store.auth.AuthService;
-import com.tundalabs.store.services.CartService;
+import com.tundalabs.store.carts.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

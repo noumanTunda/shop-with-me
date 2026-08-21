@@ -1,12 +1,6 @@
-package com.tundalabs.store.services;
+package com.tundalabs.store.carts;
 
-import com.tundalabs.store.dtos.CartDto;
-import com.tundalabs.store.dtos.CartItemDto;
-import com.tundalabs.store.entities.Cart;
-import com.tundalabs.store.exceptions.CartNotFoundException;
 import com.tundalabs.store.exceptions.ProductNotFoundException;
-import com.tundalabs.store.mappers.CartMapper;
-import com.tundalabs.store.repositories.CartRepository;
 import com.tundalabs.store.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

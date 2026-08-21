@@ -1,8 +1,8 @@
 package com.tundalabs.store.payments;
 
 import com.tundalabs.store.dtos.ErrorDto;
-import com.tundalabs.store.exceptions.CartEmptyException;
-import com.tundalabs.store.exceptions.CartNotFoundException;
+import com.tundalabs.store.carts.CartEmptyException;
+import com.tundalabs.store.carts.CartNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

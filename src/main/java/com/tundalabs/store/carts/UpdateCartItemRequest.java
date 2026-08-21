@@ -1,4 +1,4 @@
-package com.tundalabs.store.dtos;
+package com.tundalabs.store.carts;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

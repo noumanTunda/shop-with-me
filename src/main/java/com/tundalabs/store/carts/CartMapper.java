@@ -1,9 +1,5 @@
-package com.tundalabs.store.mappers;
+package com.tundalabs.store.carts;
 
-import com.tundalabs.store.dtos.CartDto;
-import com.tundalabs.store.dtos.CartItemDto;
-import com.tundalabs.store.entities.Cart;
-import com.tundalabs.store.entities.CartItem;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

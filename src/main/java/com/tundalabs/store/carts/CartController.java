@@ -1,9 +1,7 @@
-package com.tundalabs.store.controllers;
+package com.tundalabs.store.carts;
 
 import com.tundalabs.store.dtos.*;
-import com.tundalabs.store.exceptions.CartNotFoundException;
 import com.tundalabs.store.exceptions.ProductNotFoundException;
-import com.tundalabs.store.services.CartService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

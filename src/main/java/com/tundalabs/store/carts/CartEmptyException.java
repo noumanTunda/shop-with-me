@@ -1,4 +1,4 @@
-package com.tundalabs.store.exceptions;
+package com.tundalabs.store.carts;
 
 public class CartEmptyException extends RuntimeException {
     public CartEmptyException() {

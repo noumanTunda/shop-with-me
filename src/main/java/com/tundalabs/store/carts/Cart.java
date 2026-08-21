@@ -1,5 +1,6 @@
-package com.tundalabs.store.entities;
+package com.tundalabs.store.carts;
 
+import com.tundalabs.store.entities.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
